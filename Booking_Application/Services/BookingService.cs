@@ -158,10 +158,10 @@ namespace Booking_Application.Services
 
                     await _emailService.SendEmailAsync(mail);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    response.Success = true;
+                    response.Message = $"Error sending email: {ex.Message}";
                 }
             }
             catch (Exception ex)
