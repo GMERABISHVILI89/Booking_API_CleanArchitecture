@@ -1,0 +1,68 @@
+@Auth_API_HostAddress = https://localhost:7094/api/auth
+@RoomType_API_HostAddress = https://localhost:7094/api/roomtype
+
+
+POST {{Auth_API_HostAddress}}/Register
+Content-Type: application/json
+
+{
+    "username": "testuser",
+    "email": "test@example.com",
+    "role":"Admin",
+    "password": "password123",
+    "ConfirmPassword":"password123"
+}
+
+
+
+###
+
+@Auth_API_HostAddress = https://localhost:7094/api/auth
+
+POST {{Auth_API_HostAddress}}/Login
+Content-Type: application/json
+
+{
+    "username": "testuser",
+    "password": "password123"
+}
+
+
+###
+
+@Auth_API_HostAddress = https://localhost:7094/api/auth
+
+GET {{Auth_API_HostAddress}}/Profile
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIzIiwidW5pcXVlX25hbWUiOiJ0ZXN0dXNlciIsInJvbGUiOiJBZG1pbiIsIm5iZiI6MTc0MjU1NTQ3OCwiZXhwIjoxNzQyNjQxODc4LCJpYXQiOjE3NDI1NTU0NzgsImlzcyI6IkJvb2tpbmdBcGkiLCJhdWQiOiJCb29raW5nQXBpQ2xpZW50In0.R0zKeX7GkP7nqYBK1Or5bHMvSbogGbsf-TfC__eEip6P28X8HzBqkWp0w60u51K21t1XN4Q0vmm-F06o5K1Uig
+
+###
+
+
+# RoomType Requests (New)
+
+POST {{RoomType_API_HostAddress}}/add-roomType
+Content-Type: application/json
+
+{
+    "TypeName": "Deluxe TEST"
+}
+
+###
+
+PUT {{RoomType_API_HostAddress}}/edit-roomType/1
+Content-Type: application/json
+{
+    "name": "Super Deluxe",
+}
+
+###
+
+DELETE {{RoomType_API_HostAddress}}/delete-roomType/158
+
+###
+
+GET {{RoomType_API_HostAddress}}/get-all-roomTypes
+Accept: application/json
+
+###
