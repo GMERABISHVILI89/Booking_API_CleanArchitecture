@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Booking_Application.Interfaces;
 using Booking_Domain.Models;
 using Booking_Application.DTO_s.Room;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Booking_API_CleanArchitecture.Controllers
 {
@@ -19,6 +20,7 @@ namespace Booking_API_CleanArchitecture.Controllers
 
         // POST: api/room/add
         [HttpPost("add-room")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ServiceResponse<RoomDTO>>> AddRoom([FromForm] CreateRoomDTO roomDTO, [FromForm] List<IFormFile> roomImages)
         {
             if (roomImages == null || roomImages.Count == 0)
@@ -40,6 +42,7 @@ namespace Booking_API_CleanArchitecture.Controllers
 
         // PUT: api/room/update/{roomId}
         [HttpPut("update/{roomId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ServiceResponse<RoomDTO>>> UpdateRoom(int roomId, [FromForm] CreateRoomDTO roomDTO, [FromForm] List<IFormFile> roomImages)
         {
             var response = await _roomService.UpdateRoom(roomId, roomDTO, roomImages);
@@ -93,6 +96,7 @@ namespace Booking_API_CleanArchitecture.Controllers
 
         // DELETE: api/room/delete/{roomId}
         [HttpDelete("delete/{roomId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ServiceResponse<bool>>> DeleteRoom(int roomId)
         {
             var response = await _roomService.DeleteRoom(roomId);
