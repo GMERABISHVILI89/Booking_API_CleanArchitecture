@@ -95,8 +95,136 @@ namespace Booking_Infrastructure.Persistence // Change to the correct namespace
 
 
 
+
+            SeedRoomsWithImages(modelBuilder);
+
             base.OnModelCreating(modelBuilder);
 
         }
+        private void SeedRoomsWithImages(ModelBuilder modelBuilder)
+        {
+            // Seed Rooms for Chembers Grand Hotel (Id = 1)
+            modelBuilder.Entity<Room>().HasData(
+                new Room
+                {
+                    Id = 1,
+                    Name = "Deluxe King Room",
+                    HotelId = 1,
+                    PricePerNight = 250.00m,
+                    Available = true,
+                    MaximumGuests = 2,
+                    RoomTypeId = 2 
+                },
+                new Room
+                {
+                    Id = 2,
+                    Name = "Executive Suite",
+                    HotelId = 1,
+                    PricePerNight = 450.00m,
+                    Available = true,
+                    MaximumGuests = 4,
+                    RoomTypeId = 3 
+                }
+            );
+
+            // Seed Rooms for Episode Retreat (Id = 2)
+            modelBuilder.Entity<Room>().HasData(
+                new Room
+                {
+                    Id = 3,
+                    Name = "Riverside View Room",
+                    HotelId = 2,
+                    PricePerNight = 200.00m,
+                    Available = true,
+                    MaximumGuests = 2,
+                    RoomTypeId = 1
+                },
+                new Room
+                {
+                    Id = 4,
+                    Name = "Garden View Suite",
+                    HotelId = 2,
+                    PricePerNight = 350.00m,
+                    Available = true,
+                    MaximumGuests = 3,
+                    RoomTypeId = 2
+                }
+            );
+
+            // Seed Images for Chembers Grand Hotel Rooms
+            modelBuilder.Entity<Image>().HasData(
+                // Images for Deluxe King Room (Id = 1)
+                new Image
+                {
+                    Id = 1,
+                    RoomId = 1,
+                    roomImage = GenerateSampleRoomImagePath("Chembers Grand Hotel", "Deluxe King Room", 1)
+                },
+                new Image
+                {
+                    Id = 2,
+                    RoomId = 1,
+                    roomImage = GenerateSampleRoomImagePath("Chembers Grand Hotel", "Deluxe King Room", 2)
+                },
+                // Images for Executive Suite (Id = 2)
+                new Image
+                {
+                    Id = 3,
+                    RoomId = 2,
+                    roomImage = GenerateSampleRoomImagePath("Chembers Grand Hotel", "Executive Suite", 1)
+                },
+                new Image
+                {
+                    Id = 4,
+                    RoomId = 2,
+                    roomImage = GenerateSampleRoomImagePath("Chembers Grand Hotel", "Executive Suite", 2)
+                },
+
+                // Images for Episode Retreat Rooms
+                // Images for Riverside View Room (Id = 3)
+                new Image
+                {
+                    Id = 5,
+                    RoomId = 3,
+                    roomImage = GenerateSampleRoomImagePath("Episode Retreat", "Riverside View Room", 1)
+                },
+                new Image
+                {
+                    Id = 6,
+                    RoomId = 3,
+                    roomImage = GenerateSampleRoomImagePath("Episode Retreat", "Riverside View Room", 2)
+                },
+                // Images for Garden View Suite (Id = 4)
+                new Image
+                {
+                    Id = 7,
+                    RoomId = 4,
+                    roomImage = GenerateSampleRoomImagePath("Episode Retreat", "Garden View Suite", 1)
+                },
+                new Image
+                {
+                    Id = 8,
+                    RoomId = 4,
+                    roomImage = GenerateSampleRoomImagePath("Episode Retreat", "Garden View Suite", 2)
+                }
+            );
+        }
+        public static string GenerateSampleRoomImagePath(string hotelName, string roomName, int imageIndex)
+        {
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/room_images");
+            Directory.CreateDirectory(uploadsFolder);
+
+            // Create a consistent filename based on hotel name, room name, and index
+            string fileExtension = ".jpg";
+            string uniqueFileName = $"{hotelName.Replace(" ", "_").ToLower()}-{roomName.Replace(" ", "_").ToLower()}-{imageIndex}{fileExtension}";
+            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            // Return the relative path for database storage
+            return $"/room_images/{uniqueFileName}";
+        }
+
+
+
+
     }
 }

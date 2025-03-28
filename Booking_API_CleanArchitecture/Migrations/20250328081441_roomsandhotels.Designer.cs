@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking_API_CleanArchitecture.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250328075318_initialWithHotelsAndAdmin")]
-    partial class initialWithHotelsAndAdmin
+    [Migration("20250328081441_roomsandhotels")]
+    partial class roomsandhotels
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,10 +79,10 @@ namespace Booking_API_CleanArchitecture.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2025, 3, 28, 11, 53, 17, 729, DateTimeKind.Local).AddTicks(3675),
+                            CreateDate = new DateTime(2025, 3, 28, 12, 14, 41, 340, DateTimeKind.Local).AddTicks(4702),
                             Email = "admin@email.com",
-                            PasswordHash = new byte[] { 21, 195, 192, 15, 109, 10, 37, 66, 111, 6, 236, 85, 69, 215, 41, 215, 8, 104, 86, 75, 218, 158, 84, 112, 85, 211, 167, 124, 155, 240, 238, 157, 197, 45, 40, 10, 234, 120, 135, 23, 123, 130, 164, 5, 208, 155, 0, 242, 242, 93, 36, 211, 237, 183, 22, 5, 74, 22, 59, 254, 74, 40, 14, 7 },
-                            PasswordSalt = new byte[] { 114, 47, 106, 104, 52, 183, 98, 64, 110, 20, 93, 100, 22, 75, 114, 9, 135, 173, 126, 175, 103, 225, 254, 246, 126, 48, 171, 65, 46, 95, 74, 223, 211, 185, 179, 236, 201, 168, 154, 188, 156, 21, 89, 54, 43, 149, 94, 86, 119, 92, 234, 196, 134, 149, 229, 211, 102, 5, 230, 143, 185, 132, 41, 169, 20, 141, 118, 115, 59, 75, 16, 150, 10, 1, 238, 145, 200, 239, 112, 126, 183, 87, 70, 6, 144, 136, 218, 184, 160, 215, 95, 74, 73, 117, 220, 115, 105, 69, 53, 45, 126, 55, 88, 114, 211, 223, 191, 220, 132, 68, 243, 86, 190, 55, 239, 87, 103, 211, 202, 40, 1, 216, 80, 240, 207, 98, 1, 7 },
+                            PasswordHash = new byte[] { 48, 188, 51, 243, 141, 37, 25, 113, 95, 67, 212, 210, 216, 85, 51, 227, 198, 64, 168, 243, 24, 185, 138, 55, 146, 157, 16, 199, 193, 170, 182, 54, 57, 60, 136, 250, 123, 157, 135, 99, 49, 39, 213, 178, 144, 22, 117, 244, 149, 37, 160, 199, 133, 80, 39, 18, 38, 162, 232, 219, 201, 47, 78, 41 },
+                            PasswordSalt = new byte[] { 11, 127, 178, 39, 161, 0, 84, 0, 55, 126, 6, 241, 115, 10, 163, 49, 180, 239, 93, 1, 87, 191, 234, 122, 34, 34, 36, 11, 24, 208, 40, 247, 244, 34, 188, 211, 80, 229, 173, 34, 221, 166, 178, 106, 7, 205, 169, 54, 71, 73, 117, 3, 148, 44, 158, 90, 119, 44, 239, 251, 21, 52, 135, 80, 218, 182, 234, 90, 93, 245, 197, 116, 94, 163, 228, 136, 211, 62, 142, 254, 216, 69, 164, 105, 133, 166, 42, 86, 218, 210, 108, 243, 183, 146, 100, 6, 138, 65, 224, 151, 16, 159, 220, 124, 154, 202, 87, 172, 143, 223, 132, 255, 17, 210, 199, 112, 101, 97, 234, 122, 216, 170, 31, 7, 201, 147, 201, 39 },
                             Role = "Admin",
                             UserName = "admin"
                         });
@@ -257,6 +257,56 @@ namespace Booking_API_CleanArchitecture.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            RoomId = 1,
+                            roomImage = "/room_images/chembers_grand_hotel-deluxe_king_room-1.jpg"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            RoomId = 1,
+                            roomImage = "/room_images/chembers_grand_hotel-deluxe_king_room-2.jpg"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            RoomId = 2,
+                            roomImage = "/room_images/chembers_grand_hotel-executive_suite-1.jpg"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            RoomId = 2,
+                            roomImage = "/room_images/chembers_grand_hotel-executive_suite-2.jpg"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            RoomId = 3,
+                            roomImage = "/room_images/episode_retreat-riverside_view_room-1.jpg"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            RoomId = 3,
+                            roomImage = "/room_images/episode_retreat-riverside_view_room-2.jpg"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            RoomId = 4,
+                            roomImage = "/room_images/episode_retreat-garden_view_suite-1.jpg"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            RoomId = 4,
+                            roomImage = "/room_images/episode_retreat-garden_view_suite-2.jpg"
+                        });
                 });
 
             modelBuilder.Entity("Booking_Domain.Models.Room", b =>
@@ -293,6 +343,48 @@ namespace Booking_API_CleanArchitecture.Migrations
                     b.HasIndex("RoomTypeId");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Available = true,
+                            HotelId = 1,
+                            MaximumGuests = 2,
+                            Name = "Deluxe King Room",
+                            PricePerNight = 250.00m,
+                            RoomTypeId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Available = true,
+                            HotelId = 1,
+                            MaximumGuests = 4,
+                            Name = "Executive Suite",
+                            PricePerNight = 450.00m,
+                            RoomTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Available = true,
+                            HotelId = 2,
+                            MaximumGuests = 2,
+                            Name = "Riverside View Room",
+                            PricePerNight = 200.00m,
+                            RoomTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Available = true,
+                            HotelId = 2,
+                            MaximumGuests = 3,
+                            Name = "Garden View Suite",
+                            PricePerNight = 350.00m,
+                            RoomTypeId = 2
+                        });
                 });
 
             modelBuilder.Entity("Booking_Domain.Models.RoomType", b =>
