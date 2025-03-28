@@ -48,7 +48,7 @@ namespace Booking_API_CleanArchitecture.Controllers
             if (response.Success)
             {
                 var baseUrl = $"{Request.Scheme}://{Request.Host}";
-
+                var baseUrlRoom = $"{Request.Scheme}://{Request.Host}/";
                 foreach (var hotel in response.Data)
                 {
                     if (!string.IsNullOrEmpty(hotel.hotelImage))
@@ -56,7 +56,32 @@ namespace Booking_API_CleanArchitecture.Controllers
 
                         hotel.hotelImage = baseUrl + hotel.hotelImage;
                     }
+                    if (hotel.Rooms != null && hotel.Rooms.Any())
+                    {
+                        foreach (var room in hotel.Rooms)
+                        {
+                            if (room.Images != null && room.Images.Any())
+                            {
+                                // Correct way to modify image paths
+                                room.Images = room.Images.Select(image =>
+                                {
+                                    // Check if the image path is not already a full URL
+                                    if (!string.IsNullOrEmpty(image.roomImage) && !image.roomImage.StartsWith("http"))
+                                    {
+                                        return new Image
+                                        {
+                                            Id = image.Id,
+                                            RoomId = image.RoomId,
+                                            roomImage = baseUrl + image.roomImage
+                                        };
+                                    }
+                                    return image;
+                                }).ToList();
+                            }
+                        }
+                    }
                 }
+            
                 return Ok(response);
             }
             else
