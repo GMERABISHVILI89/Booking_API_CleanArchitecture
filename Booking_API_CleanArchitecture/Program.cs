@@ -22,9 +22,14 @@ builder.Services.AddControllers()
 
 
 // Connection
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
- options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        b => b.MigrationsAssembly("Booking_API_CleanArchitecture") 
+    )
+);
 
 // Add CORS Policy
 builder.Services.AddCors(options =>
