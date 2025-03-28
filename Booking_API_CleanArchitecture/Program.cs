@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Booking_Shared;
+using Booking_Application;
 var builder = WebApplication.CreateBuilder(args);
 // for prevent cycles
 builder.Services.AddControllers()
@@ -95,18 +96,8 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-
-
-// Added DI service For  Email
-builder.Services.AddTransient<IEmailService, EmailService>();
-
 // Added DI services 
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IHotelService, HotelService>();
-builder.Services.AddScoped<IRoomService, RoomService>();
-builder.Services.AddScoped<IBookingService, BookingService>();
-builder.Services.AddScoped<IFilterService, FilterService>();
-builder.Services.AddScoped<IRoomTypeService, RoomTypeService>();
+builder.Services.AddApplicationServices();
 
 
 //JWT

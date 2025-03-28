@@ -12,11 +12,12 @@ namespace Booking_Application
         {
             // Register Application Layer services
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IHotelService, HotelService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IFilterService, FilterService>();
             services.AddScoped<IRoomTypeService, RoomTypeService>();
-
+            services.AddTransient<IEmailService, EmailService>();
             return services;
         }
     }
