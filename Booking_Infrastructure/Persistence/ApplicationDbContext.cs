@@ -30,7 +30,10 @@ namespace Booking_Infrastructure.Persistence // Change to the correct namespace
             }
 
 
-            var (passwordHash, passwordSalt) = CreatePasswordHash("Admin!234");
+            var (passwordHashAdmin, passwordSaltAdmin) = CreatePasswordHash("Admin!234");
+            var (passwordHashUser, passwordSaltUser) = CreatePasswordHash("User!234");
+
+
             modelBuilder.Entity<User>().HasData(
                  new User
                  {
@@ -38,10 +41,21 @@ namespace Booking_Infrastructure.Persistence // Change to the correct namespace
                   UserName = "admin",
                   Email = "admin@email.com",
                   Role = "Admin",
-                  PasswordHash = passwordHash,
-                  PasswordSalt = passwordSalt
-                  }
+                  PasswordHash = passwordHashAdmin,
+                  PasswordSalt = passwordSaltAdmin
+                 }
              );
+            modelBuilder.Entity<User>().HasData(
+              new User
+              {
+                  Id = 2,
+                  UserName = "user",
+                  Email = "user@email.com",
+                  Role = "User",
+                  PasswordHash = passwordHashUser,
+                  PasswordSalt = passwordSaltUser
+              }
+          );
 
 
             // Ensure Id is the primary key for each model

@@ -4,6 +4,7 @@ using Booking_Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Booking_API_CleanArchitecture.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250329131451_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,22 +79,12 @@ namespace Booking_API_CleanArchitecture.Migrations
                         new
                         {
                             Id = 1,
-                            CreateDate = new DateTime(2025, 3, 29, 17, 29, 51, 296, DateTimeKind.Local).AddTicks(7349),
+                            CreateDate = new DateTime(2025, 3, 29, 17, 14, 48, 701, DateTimeKind.Local).AddTicks(8926),
                             Email = "admin@email.com",
-                            PasswordHash = new byte[] { 227, 189, 1, 219, 160, 55, 24, 58, 65, 6, 222, 69, 190, 81, 208, 64, 6, 197, 190, 119, 203, 28, 229, 5, 114, 215, 159, 22, 201, 14, 140, 170, 188, 255, 44, 125, 155, 156, 166, 29, 212, 29, 194, 212, 97, 31, 124, 169, 160, 182, 191, 29, 155, 131, 136, 102, 27, 125, 61, 171, 43, 39, 205, 96 },
-                            PasswordSalt = new byte[] { 97, 64, 80, 2, 143, 91, 190, 238, 151, 220, 119, 195, 101, 197, 201, 37, 227, 87, 198, 199, 46, 119, 148, 165, 145, 181, 4, 115, 247, 57, 166, 115, 131, 208, 30, 35, 232, 237, 246, 85, 182, 79, 8, 173, 197, 170, 35, 163, 224, 181, 209, 146, 221, 76, 114, 184, 100, 68, 112, 152, 168, 86, 102, 46, 1, 94, 208, 178, 232, 157, 132, 235, 192, 57, 88, 196, 57, 70, 99, 152, 197, 187, 133, 93, 73, 74, 205, 222, 18, 132, 115, 117, 131, 226, 242, 216, 153, 147, 156, 160, 162, 194, 190, 100, 248, 64, 150, 214, 113, 10, 222, 125, 10, 245, 32, 72, 190, 113, 243, 98, 167, 255, 56, 127, 104, 130, 99, 220 },
+                            PasswordHash = new byte[] { 175, 88, 219, 93, 72, 98, 203, 9, 226, 215, 39, 97, 186, 118, 195, 78, 5, 93, 21, 147, 91, 43, 84, 180, 167, 45, 88, 73, 27, 2, 255, 36, 96, 10, 125, 141, 191, 75, 5, 4, 56, 44, 130, 152, 209, 208, 153, 157, 193, 30, 207, 69, 89, 138, 239, 9, 93, 122, 235, 252, 214, 6, 190, 146 },
+                            PasswordSalt = new byte[] { 189, 223, 51, 201, 39, 153, 175, 91, 229, 94, 247, 225, 138, 71, 211, 16, 101, 124, 207, 230, 255, 217, 235, 148, 181, 107, 250, 15, 87, 122, 51, 252, 147, 33, 237, 45, 129, 176, 30, 200, 95, 43, 136, 59, 0, 172, 149, 16, 255, 137, 93, 83, 94, 82, 68, 111, 37, 138, 97, 24, 108, 35, 109, 65, 156, 194, 196, 4, 126, 4, 166, 125, 204, 251, 3, 65, 47, 114, 231, 10, 249, 13, 181, 20, 195, 52, 195, 119, 185, 49, 101, 150, 142, 134, 247, 220, 252, 7, 196, 102, 93, 216, 141, 197, 236, 75, 216, 107, 123, 64, 244, 171, 244, 33, 212, 194, 82, 127, 115, 200, 42, 128, 9, 63, 240, 235, 94, 250 },
                             Role = "Admin",
                             UserName = "admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreateDate = new DateTime(2025, 3, 29, 17, 29, 51, 296, DateTimeKind.Local).AddTicks(7422),
-                            Email = "user@email.com",
-                            PasswordHash = new byte[] { 248, 204, 23, 176, 145, 22, 108, 218, 243, 146, 23, 214, 182, 197, 22, 119, 202, 253, 64, 165, 145, 60, 95, 32, 67, 136, 164, 117, 203, 50, 68, 132, 131, 223, 179, 203, 67, 196, 73, 55, 188, 172, 132, 234, 48, 116, 118, 106, 136, 27, 95, 71, 25, 27, 24, 49, 151, 162, 46, 224, 84, 182, 208, 13 },
-                            PasswordSalt = new byte[] { 24, 33, 12, 96, 93, 251, 50, 73, 112, 240, 63, 45, 181, 67, 11, 247, 45, 69, 68, 254, 16, 31, 220, 161, 238, 133, 36, 232, 219, 178, 193, 95, 237, 79, 21, 16, 103, 212, 213, 89, 13, 147, 222, 120, 32, 242, 0, 183, 245, 132, 63, 124, 148, 221, 213, 43, 114, 20, 129, 122, 55, 228, 166, 43, 251, 44, 71, 92, 183, 148, 100, 94, 109, 207, 56, 247, 55, 23, 143, 179, 96, 127, 241, 191, 76, 32, 108, 57, 96, 132, 99, 118, 252, 243, 136, 14, 169, 249, 162, 137, 195, 112, 0, 184, 189, 163, 164, 221, 228, 18, 67, 226, 198, 18, 132, 71, 76, 186, 73, 30, 136, 64, 200, 97, 98, 67, 201, 114 },
-                            Role = "User",
-                            UserName = "user"
                         });
                 });
 
